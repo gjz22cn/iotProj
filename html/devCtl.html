@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0, width=device-width"/>
+	<title>api</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/devCtl.css" />
+</head>
+<body>
+	<div id="wrap">
+	<div id="header">
+            <a class="back-icon" tapmode="" onclick="api.closeWin()"></a>
+            <h1 id="devctl-header">设备控制</h1>
+    </div>
+	<div id="main">
+		<script id="ctl-template" type="text/x-dot-template">
+        	<ul class="info shadow">
+            {{ var s_dm=it[0];
+               var s_dd=it[1];
+               for(var i=0; i<s_dm.length; i++) { 
+	           	if(s_dm[i].type == "switch") { }}
+	        	<li class="switchs">
+	        		<a tapmode="">
+	            	{{ if(s_dm[i].displayType == "static") { }}
+	            		{{=s_dm[i].display}}
+	            	{{ } else if(s_dm[i].displayType == "customer") { }}
+	            		{{=s_dd[s_dm[i].cDisplay]}}
+	            	{{ } }}
+	            	</a>
+	            	<div>
+	                {{ if(s_dd[s_dm[i].param] == "1") { }}
+	                	<label><input id={{=s_dm[i].param}} class="mui-switch mui-switch-animbg" type="checkbox" onchange="devCtlChangeSwitch(this)" checked></label>
+	                {{ } else { }}
+	                	<label><input id={{=s_dm[i].param}} class="mui-switch mui-switch-animbg" type="checkbox" onchange="devCtlChangeSwitch(this)"></label>
+	                {{ } }}
+	                </div>
+	              </li>
+	        {{ } } }}
+	    	</ul>
+        </script>
+    	<div id="ctl-content"></div>
+	</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src='../script/swipe.js'></script>
+<script type="text/javascript" src="../script/doT.min.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/devCtl.js"></script>
+<script type="text/javascript" src="../script/iot.js"></script>
+</html>
