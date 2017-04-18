@@ -1,3 +1,21 @@
+function iotGetServerAddr() {
+	var iotServer = $api.getStorage('iotServer');
+	var srvAddr = "192.168.1.1";
+	var tIndex=0;
+	
+	if (typeof(iotServer) != "undefined") {
+    	if (iotServer.indexOf("http://") == 0) {
+    		srvAddr = iotServer.substr(7);
+    		tIndex = srvAddr.indexOf(":", 10);
+    		if (tIndex > 0) {
+    			srvAddr = srvAddr.substr(0, tIndex);
+    		}
+    	}
+    }
+   
+   	return srvAddr;
+}
+
 function iotGetCmdRet(cmdId, devId) {
  	var uid = $api.getStorage('uid');
     var urlParam = {

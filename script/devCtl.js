@@ -1,4 +1,42 @@
 var g_devId;
+//创建一个连接，这里的参数是服务端的链接
+
+var ws = new WebSocket('ws://'+iotGetServerAddr()+':3009/');
+
+//向客户端发送消息，这里定义了一些参数用来设置消息的颜色字体，不过暂时没用到有兴趣的可以自己实现
+function sendMsgToServer(msg) {
+    //向服务端发送消息
+    ws.send(msg);
+}
+
+//打开连接时触发
+ws.onopen = function() {
+	getDeviceData();
+};
+
+//收到消息时触发
+ws.onmessage = function(e) {
+	var msg = JSON.parse(e.data);
+	
+	if (msg.ret != 0) {
+		alert(msg.msgType+": ["+msg.ret+"] "+msg.data);
+		return;
+	}
+	
+	if(msg.msgType == "dev_get_one") {
+		showCtls(msg.data);
+	} else if (msg.msgType == "dev_ctl") {
+		alert(msg.data);
+	}
+}
+
+//关闭连接时触发
+ws.onclose = function(e) {
+}
+//连接错误时触发
+ws.onerror = function(e) {
+}
+
 
 function devCtlChangeSwitch(obj) {
 	var uid = $api.getStorage('uid');
@@ -16,25 +54,7 @@ function devCtlChangeSwitch(obj) {
     	urlParam.controls[obj.id] = "0";
     }
     
-    iotServerRequest("/app", 'POST', JSON.stringify(urlParam), function (ret, err) {
-        if (ret) {
-        	if(ret.ret == 0) {
-				if (typeof(ret.commandId) != "undefined") {
-				    api.showProgress({
-        				title: '正在下发配置给设备...',
-        				modal: false
-    				});
-        			setTimeout("iotGetCmdRet("+ret.commandId.toString()+","+g_devId.toString()+")", 1000);
-        		} else {
-        			api.alert({msg: "操作失败!\nRet:  90010\n原因:cmdId缺失！"});
-        		}
-        	} else {
-        		api.alert({msg: "操作失败!\nRet:  "+ret.ret+"\n原因:"+ret.errStr});
-        	}
-        } else {
-            api.alert({msg: err.msg});
-        }
-    });
+    sendMsgToServer(JSON.stringify(urlParam));
 }
 
 function ensure() {
@@ -89,18 +109,23 @@ function showCtls (devData) {
 	content.innerHTML = tempFn(arrayObj);
 }
 
-function getDeviceData(devId) {
-	iotGetDeviceData(devId, showCtls);
+function getDeviceData() {
+	var uid = $api.getStorage('uid');
+	var urlParam = {
+		msgType: "dev_get_one",
+    	userId: uid,
+        devId: g_devId,
+    }
+    ws.send(JSON.stringify(urlParam));
 }
+
+function closeDevCtlPage() {
+	api.closeWin();
+}
+
 apiready = function () {
 	g_devId = api.pageParam.devId;
-	 
-	/*$api.byId('devctl-header').innerHTML = g_devData.devData.name;
-    var header = $api.byId('header');
-    $api.fixIos7Bar(header);*/
-	
-	getDeviceData(g_devId);
-
+		
     //pull to refresh
     api.setRefreshHeaderInfo({
         visible: true,
@@ -111,7 +136,7 @@ apiready = function () {
         textUp: '松开刷新...',
         showTime: true
     }, function (ret, err) {
-    	getDeviceData(g_devId);
+    	getDeviceData();
         api.refreshHeaderLoadDone();
     });
 
@@ -119,6 +144,6 @@ apiready = function () {
     api.addEventListener({
         name: 'scrolltobottom'
     }, function (ret, err) {
-        getDeviceData(g_devId);
+        getDeviceData();
     });
 };
