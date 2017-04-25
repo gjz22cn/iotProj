@@ -81,28 +81,34 @@ var chatdata = getChatdata();
 
 $(".sendBtn").on("click",function(){
 	var message = $(".messageInput").val();
+	
 	if(message.length == 0){
 		toast("不能发送空消息!");
-	}else{
-		
-		sendMessage(function(){
+	}else{	
+		sendMessage(function(){	
+			var dic = {};
+			dic.type = "2";
+			dic.message = message;
+	    	storageChatdata(dic);
+			var dom = $(chatDom2);
+			dom.find(".message").text(message);
+			$("#chatContainer").append(dom);
+			$(".messageInput").val("");
+			scrollToBottom("#chatContainer");
 			
-				
-		var dic = {};
-		dic.type = "2";
-		dic.message = message;
-	    storageChatdata(dic);
-		var dom = $(chatDom2);
-		dom.find(".message").text(message);
-		$("#chatContainer").append(dom);
-		$(".messageInput").val("");
-		scrollToBottom("#chatContainer");
+			var urlParam = {
+				msgType: "QAsession",
+    			from: g_uid,
+    			to:   g_to,
+        		msg: { 
+        			type: "txt",
+        			data: message
+        		}
+    		};
+    
+    		sendMsgToServer(JSON.stringify(urlParam));
 		});
-		
-
-	
 	}
-	
 });
 
 $(".emptyBtn").on("click",function(){
@@ -110,3 +116,56 @@ $(".emptyBtn").on("click",function(){
 });
 
 
+var g_uid=123456;
+var ws;
+var g_to="robot";
+
+//向客户端发送消息，这里定义了一些参数用来设置消息的颜色字体，不过暂时没用到有兴趣的可以自己实现
+function sendMsgToServer(msg) {
+    //向服务端发送消息
+    ws.send(msg);
+}
+    
+apiready = function () {
+	g_uid = $api.getStorage('uid');
+	g_uid="robot";
+	
+	//创建一个连接，这里的参数是服务端的链接
+	ws = new WebSocket('ws://'+iotGetServerAddr()+':3009/');
+
+	//打开连接时触发
+	ws.onopen = function() {
+		var urlParam = {
+			msgType: "login",
+    		userId: g_uid,
+    	};
+    
+    	sendMsgToServer(JSON.stringify(urlParam));
+	};
+
+	//收到消息时触发
+	ws.onmessage = function(e) {
+		var msg = JSON.parse(e.data);
+		
+		if(msg.msgType == "QAsession") {
+			//alert(JSON.stringify(msg));
+			var dic = {};
+			dic.type = "1";
+			dic.message = msg.msg.data;
+	    	storageChatdata(dic);
+			var dom = $(chatDom1);
+			dom.find(".message").text(dic.message);
+			$("#chatContainer").append(dom);
+			$(".messageInput").val("");
+			scrollToBottom("#chatContainer");
+			g_to = msg.from;
+		}
+	}
+
+	//关闭连接时触发
+	ws.onclose = function(e) {
+	}
+	//连接错误时触发
+	ws.onerror = function(e) {
+	}
+}
