@@ -24,6 +24,7 @@
 /A6973666436346/image/worker.png
 /A6973666436346/image/edit.png
 /A6973666436346/image/clear.png
+/A6973666436346/script/chatVoice.js
 /A6973666436346/icon/icon150x150.png
 /A6973666436346/image/local-l.png
 /A6973666436346/image/personal_btn_sele.png
@@ -57,6 +58,7 @@
 /A6973666436346/image/scan.png
 /A6973666436346/script/doT.min.js
 /A6973666436346/css/news-pic.css
+/A6973666436346/image/chat-icon.png
 /A6973666436346/html/userLogin.html
 /A6973666436346/html/news-video.html
 /A6973666436346/image/home-l.png
@@ -66,6 +68,7 @@
 /A6973666436346/image/checkin1.png
 /A6973666436346/css/life.css
 /A6973666436346/html/userRegister.html
+/A6973666436346/css/chatVoice.css
 /A6973666436346/image/logo1.png
 /A6973666436346/image/tel.png
 /A6973666436346/script/life.js
@@ -74,6 +77,7 @@
 /A6973666436346/image/refresh-white.png
 /A6973666436346/README.md
 /A6973666436346/script/register.js
+/A6973666436346/image/chat-l.png
 /A6973666436346/html/user.html
 /A6973666436346/image/life-icon.png
 /A6973666436346/script/iot.js
@@ -87,6 +91,7 @@
 /A6973666436346/script/modifyPwd.js
 /A6973666436346/script/devCtl.js
 /A6973666436346/css/common.css
+/A6973666436346/image/chat.png
 /A6973666436346/image/maintain.png
 /A6973666436346/image/housekeeping.png
 /A6973666436346/image/wash.png
@@ -186,11 +191,13 @@
 /A6973666436346/css/carousel-style.css
 /A6973666436346/image/unlocking.png
 /A6973666436346/css/restaurant.css
+/A6973666436346/image/chatVoice.png
 /A6973666436346/html/chat.html
 /A6973666436346/html/404.html
 /A6973666436346/html/setting-con.html
 /A6973666436346/res/imges/on.png
 /A6973666436346/image/pub.png
+/A6973666436346/html/chatVoice.html
 /A6973666436346/html/news.html
 /A6973666436346/image/move.png
 /A6973666436346/image/hot.png

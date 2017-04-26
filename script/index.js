@@ -3,6 +3,28 @@ var prevPid = '', curPid = '';
 //save opened frame name
 var frameArr = [];
 
+
+function chat(){
+    api.openWin({
+        name: 'chat',
+        url: './html/chat.html',
+        opaque: true,
+        vScrollBarEnabled: false,
+        bounce:false
+     
+    });
+}
+
+function chatVoice(){
+	    api.openWin({
+        name: 'chatVoice',
+        url: './html/chatVoice.html',
+        opaque: true,
+        vScrollBarEnabled: false,
+   		bounce:false
+    });
+}
+
 //frame whether open
 function isOpened(frmName){
     var i = 0, len = frameArr.length;

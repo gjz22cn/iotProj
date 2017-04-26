@@ -140,3 +140,78 @@ li{
 	right: 10px;
 	
 }
+
+
+.voice{
+	width: 100px;
+	height: 100px;
+	background: orange;
+	position: fixed;
+	top: 300px;
+	border-radius: 50px;
+	text-align: center;
+	line-height: 100px;
+	left: 50%;
+	margin-left: -50px;
+
+}
+
+.read{
+	width: 100px;
+	height: 100px;
+	top: 150px;
+	border-radius: 50px;
+	line-height: 100px;
+	margin-left: -50px;
+	
+	background: deepskyblue;
+	position: fixed;
+	left: 50%;
+	text-align: center;
+	
+
+}
+
+.readAnimation{
+	animation: voice 2s infinite linear;
+	-webkit-animation: voice 2s infinite linear;
+}
+
+
+@-webkit-animation  voice
+{
+from {
+	width: 100px;
+	height: 100px;
+	top: 150px;
+	border-radius: 50px;
+	line-height: 100px;
+	margin-left: -50px;
+	}
+to {
+	width: 120px;
+	height: 120px;
+	top: 140px;
+	border-radius: 60px;
+	line-height: 120px;
+	margin-left: -60px;
+	}
+}
+
+@keyframes  voice
+{
+0%{
+		background: deepskyblue;
+	}
+50% {
+		background-color: chartreuse;
+	}
+100%{
+		background: deepskyblue;
+}
+
+}
+
+.yellow{
+	background: yellow!important;
+}

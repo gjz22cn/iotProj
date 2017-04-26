@@ -57,9 +57,9 @@ function emptyMessage(){
 
 //var chatdata = [{"type":"1","message":"这是聊天记录","time":"今天 10:50"},{"type":"1","message":"这是聊天记录","time":"今天 10:50"},{"type":"2","message":"这是聊天记录","time":"今天 10:50"}];
 
-var chatDom1 = '<li><div class="time"></div><div class="headerImgContainer"><img class="headerImg" src="../image/羽扇纶巾.png" /></div><div class="message"></div></li>';
+var chatDom1 = '<li><div class="time"></div><div class="headerImgContainer"><div class="name">名字:</div></div><div class="message"></div></li>';
 
-var chatDom2 = '<li><div class="time"></div><div class="rigth-Margin"></div><div class="messageContainer"><div class="message">了了弗撒了水电费水电费了了弗xvfasfdsaf撒了水电费水电费了了弗撒了水电费水电费了了弗撒了水电费水电费了了弗撒了水电费水电费。</div></div><div class="headerImgContainer"><img class="headerImg" src="../image/羽扇纶巾.png" /></div></li>';
+var chatDom2 = '<li><div class="time"></div><div class="rigth-Margin"></div><div class="messageContainer"><div class="message">了了弗撒了水电费水电费了了弗xvfasfdsaf撒了水电费水电费了了弗撒了水电费水电费了了弗撒了水电费水电费了了弗撒了水电费水电费。</div></div><div class="headerImgContainer"><div class="name">:名字</div></div></li>';
 
 var chatdata = getChatdata();
 
@@ -109,6 +109,7 @@ $(".sendBtn").on("click",function(){
     		sendMsgToServer(JSON.stringify(urlParam));
 		});
 	}
+		
 });
 
 $(".emptyBtn").on("click",function(){
@@ -127,6 +128,10 @@ function sendMsgToServer(msg) {
 }
     
 apiready = function () {
+	var header = $api.byId('header');
+    $api.fixIos7Bar(header);
+	
+	
 	g_uid = $api.getStorage('uid');
 	g_uid="robot";
 	
