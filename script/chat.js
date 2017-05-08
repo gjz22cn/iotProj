@@ -121,6 +121,7 @@ var g_uid=123456;
 var ws;
 var g_to="robot";
 
+
 //向客户端发送消息，这里定义了一些参数用来设置消息的颜色字体，不过暂时没用到有兴趣的可以自己实现
 function sendMsgToServer(msg) {
     //向服务端发送消息
@@ -133,7 +134,7 @@ apiready = function () {
 	
 	
 	g_uid = $api.getStorage('uid');
-	g_uid="robot";
+//	g_uid="robot";
 	
 	//创建一个连接，这里的参数是服务端的链接
 	ws = new WebSocket('ws://'+iotGetServerAddr()+':3009/');

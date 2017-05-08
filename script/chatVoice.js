@@ -3,6 +3,7 @@ var messageGlobal = "欢迎使用语音客服";
 var g_uid=123456;
 var ws;
 var g_to="robot";
+
 //发送消息
 function sendMessage(mes){
 	
@@ -19,6 +20,7 @@ function sendMessage(mes){
 
 }
 function getVoice(){
+	console.log("录音");
 	speechRecognizer.record({
     vadbos: 5000,
     vadeos: 5000,
@@ -27,9 +29,16 @@ function getVoice(){
    
 }, function(ret, err) {
     if (ret.status) {
-        //api.alert({ msg: ret.wordStr });
+          //api.alert({ msg: ret.wordStr });
         //发送消息
-        sendMessage(ret.wordStr);
+      
+       var str = ret.wordStr;
+       var reg = /[\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/;
+        if(ret.wordStr != "" && reg.test(str.charAt(str.length - 1)) ){
+        	  	   console.log(JSON.stringify(ret));
+        	       sendMessage(ret.wordStr);
+        }
+ 
 
     } else {
         //api.alert({ msg: err.msg });
@@ -133,7 +142,7 @@ apiready = function () {
 	setVoice();
 	setReadVoice();
 	g_uid = $api.getStorage('uid');
-	g_uid="robot";
+//	g_uid="robot";
 	
 	//创建一个连接，这里的参数是服务端的链接
 	ws = new WebSocket('ws://'+iotGetServerAddr()+':3009/');
