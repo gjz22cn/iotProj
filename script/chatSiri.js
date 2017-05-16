@@ -21,9 +21,24 @@ var g_to="robot";
   		
   			}
 		});
+		
+		//震动
+function shake(){
+	api.notification({
+	vibrate:[100,100]
+   
+}, function(ret, err) {
+    var id = ret.id;
+});
 
+}
 function setvoicebtn(){
 	$("#voiceBtn").on("click", function() {
+		//震动
+		shake();
+
+ 
+
     SW9.start();
     speechRecognizer.stopRead();
 	$(".wavecontainer").css("z-index", 1);
@@ -33,8 +48,13 @@ function setvoicebtn(){
 });
 
 $(".wavecontainer").on("click", function() {
+	
+	 voiceFlag = 1;
+	//震动
+
+ 
 	 speechRecognizer.stopRecord();
-    voiceFlag = 1;
+
 	SW9.stop();
     speechRecognizer.stopRead();
    
