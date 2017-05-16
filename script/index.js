@@ -10,7 +10,7 @@ function chat(){
         url: './html/chat.html',
         opaque: true,
         vScrollBarEnabled: false,
-        bounce:false
+        bounces:false
      
     });
 }
@@ -18,10 +18,13 @@ function chat(){
 function chatVoice(){
 	    api.openWin({
         name: 'chatVoice',
-        url: './html/chatVoice.html',
+//      url: './html/chatVoice.html',
+		url: './html/chatSiri.html',
         opaque: true,
         vScrollBarEnabled: false,
-   		bounce:false
+   		bounces:false,
+   		
+   		
     });
 }
 

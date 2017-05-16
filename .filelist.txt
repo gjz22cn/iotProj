@@ -1,5 +1,6 @@
 /A6973666436346/image/eye.png
 /A6973666436346/script/api.js
+/A6973666436346/html/chatSiri.html
 /A6973666436346/image/activity.png
 /A6973666436346/script/login.js
 /A6973666436346/css/tel.css
@@ -21,8 +22,8 @@
 /A6973666436346/script/webtoolkit.sha1.js
 /A6973666436346/fonts/mui-icons-extra.ttf
 /A6973666436346/image/video.png
-/A6973666436346/image/worker.png
 /A6973666436346/image/edit.png
+/A6973666436346/image/worker.png
 /A6973666436346/image/clear.png
 /A6973666436346/script/chatVoice.js
 /A6973666436346/icon/icon150x150.png
@@ -40,13 +41,14 @@
 /A6973666436346/image/pedicure.png
 /A6973666436346/res/imges/off.png
 /A6973666436346/image/play-light.png
+/A6973666436346/script/Vue.js
 /A6973666436346/image/arr-d.png
 /A6973666436346/image/training.png
 /A6973666436346/css/carousel.css
 /A6973666436346/script/jquery-3.2.1.min.js
 /A6973666436346/image/activity-icon.png
-/A6973666436346/image/arr-t.png
 /A6973666436346/image/news-l.png
+/A6973666436346/image/arr-t.png
 /A6973666436346/image/404.png
 /A6973666436346/image/personal_btn_nor.png
 /A6973666436346/css/news-text.css
@@ -61,6 +63,7 @@
 /A6973666436346/image/chat-icon.png
 /A6973666436346/html/userLogin.html
 /A6973666436346/html/news-video.html
+/A6973666436346/css/chatSiri.css
 /A6973666436346/image/home-l.png
 /A6973666436346/image/arr-l.png
 /A6973666436346/image/switch.png
@@ -83,6 +86,7 @@
 /A6973666436346/script/iot.js
 /A6973666436346/image/fun-title.png
 /A6973666436346/css/devSettings.css
+/A6973666436346/script/chatSiri.js
 /A6973666436346/image/pipe.png
 /A6973666436346/image/home.png
 /A6973666436346/html/pluginMgmt.html
@@ -132,6 +136,7 @@
 /A6973666436346/script/common.js
 /A6973666436346/image/down.png
 /A6973666436346/html/setting.html
+/A6973666436346/script/siriwave.js
 /A6973666436346/image/logo.png
 /A6973666436346/image/play-dark.png
 /A6973666436346/image/beauty.png
@@ -185,12 +190,12 @@
 /A6973666436346/image/report.png
 /A6973666436346/image/user-l.png
 /A6973666436346/script/zepto.js
-/A6973666436346/script/news-pic.js
 /A6973666436346/image/arr_r.png
-/A6973666436346/script/underscore.js
+/A6973666436346/script/news-pic.js
 /A6973666436346/css/carousel-style.css
-/A6973666436346/image/unlocking.png
+/A6973666436346/script/underscore.js
 /A6973666436346/css/restaurant.css
+/A6973666436346/image/unlocking.png
 /A6973666436346/image/chatVoice.png
 /A6973666436346/html/chat.html
 /A6973666436346/html/404.html
@@ -202,3 +207,4 @@
 /A6973666436346/image/move.png
 /A6973666436346/image/hot.png
 /A6973666436346/html/modifyPwd.html
+/A6973666436346/image/microphone.png

@@ -43,9 +43,7 @@ function getChatdata(){
 function storageChatdata(dic){
 	var chatdata = getChatdata();
 	chatdata.data.push(dic);
-	
 	localStorage.chatdata = JSON.stringify(chatdata);
-	
 }
 
 function emptyMessage(){
