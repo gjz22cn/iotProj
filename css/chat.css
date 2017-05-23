@@ -12,7 +12,8 @@ li{
 	color: lightseagreen;
 	position: absolute;
 	right: 10px;
-	top: 32px;
+	top: 0px;
+	line-height: 45px;
 	font-size: 16px;
 }
 
@@ -21,7 +22,7 @@ li{
 
 	font-size: 0;
     position: absolute;
-    top: 65px;
+    top: 45px;
     left: 0;
     width: 100%;
     bottom: 40px;
@@ -106,9 +107,9 @@ li{
 
 /*聊天框*/
 #chat-feature{
-	/*border: 1px solid red;*/
+	
 	height: 40px;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	width: 100%;

@@ -20,21 +20,23 @@
 
 
 		<div id="wrap">
+				<div id="app">
 			<div id="header">
 				<a class="back-icon" tapmode="" onclick="api.closeWin()"></a>
 				<h1>语音客服</h1>
+				<div class="stopBtn" style="color: white;" v-on:click="stopRead">停止朗读</div>
 			</div>
 			
-			<div id="app">
+		
 			<ul id="chatContainer" style="font-size: 0;" >
 			   <template v-for="(mess,index) in history">
 				<li class="mymessageContainer" v-if="mess.type == 1">
 					<!--<textarea  class="editContainer" class="editContainer"></textarea>-->
-					<div class="mymessage"  tabindex="0">{{mess.message}}</div>
+					<div class="mymessage"  tabindex="0" v-html="mess.message"><!--{{mess.message}}--></div>
 				    <div class="editmessageContainer" ><div class="editmessage">轻点以编辑</div></div> 
 				</li>
 				<li class="youmessageContainer"  v-if="mess.type == 2">
-					<div class="youmessage">{{mess.message}}</div>
+					<div class="youmessage" v-html="mess.message"><!--{{mess.message}}--></div>
 				</li>
 			</template>
 			<li style="height:100%;box-sizing: border-box;"></li>

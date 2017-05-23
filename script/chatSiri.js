@@ -7,7 +7,7 @@ var g_uid=123456;
 var ws;
 var g_to="robot";
 
-	var myApp =	new Vue({
+var myApp =	new Vue({
   			el: '#app',
  		    data: {
  		    	history:[],
@@ -21,23 +21,18 @@ var g_to="robot";
   		
   			}
 		});
-		
-		//震动
-function shake(){
-	api.notification({
-	vibrate:[100,100]
-   
-}, function(ret, err) {
-    var id = ret.id;
-});
+//停止朗读
+function stopRead(){
+	$(".stopBtn").css("color","yellow");
+	speechRecognizer.stopRead();
+	setTimeout(function(){
+			$(".stopBtn").css("color","white");
+	},300);
 
 }
+
 function setvoicebtn(){
 	$("#voiceBtn").on("click", function() {
-		//震动
-		shake();
-
- 
 
     SW9.start();
     speechRecognizer.stopRead();
@@ -79,6 +74,8 @@ $(document).on("click",".editmessage",function(){
 	var mess = ele.text().substring(1,ele.text().length-1);
 	ele.text(mess);
 	po_Last_Div(ele[0]);
+	//滚动到最上面
+	$("#chatContainer").scrollTop(scrollTop_g);
 	//失去焦点的时候返回编辑前的样式
 $(".select").on("blur",function(){
 	 //设置ele不可编辑
@@ -189,6 +186,9 @@ function  sendMessage(message){
 
 function getMessage(message){
 
+    message = message.replace("\n","<br/>");
+
+
 	flag = 2;
 	voiceToText(message);
 	var dic = {type:2,message:message};
@@ -217,27 +217,27 @@ myApp.$watch("history",function(){
 
 });
 
-//滚动
-var timeFlag = 2;
-
-	
-	$("#chatContainer").on("scroll",function(){
-	
-
-	if($("#chatContainer").scrollTop() > scrollTop_g){
-		if(timeFlag == 2){
-			timeFlag == 1;
-		setTimeout(function(){
-			$("#chatContainer").scrollTop(scrollTop_g);
-			timeFlag = 2;
-		},300);
-		}
-
-	}
+//滑动等时候滚动到第一条消息等高度
 
 
-	
-});
+//var timeFlag = 2;
+//
+//	
+//	$("#chatContainer").on("scroll",function(){
+//	
+//
+//	if($("#chatContainer").scrollTop() > scrollTop_g){
+//		if(timeFlag == 2){
+//			timeFlag == 1;
+//		setTimeout(function(){
+//			$("#chatContainer").scrollTop(scrollTop_g);
+//			timeFlag = 2;
+//		},300);
+//		}
+//
+//	}
+//	
+//});
 
 
 
@@ -246,8 +246,8 @@ var speechRecognizer = 0;
 function getVoice(){
 	console.log("录音");
 	speechRecognizer.record({
-    vadbos: 2000,
-    vadeos: 2000,
+    vadbos: 3000,
+    vadeos: 3000,
     rate: 16000,
     asrptt: 1,
    
@@ -275,26 +275,14 @@ function getVoice(){
        }
        //超时触发
         if(voiceFlag == 2){
-       	
-       	        	
         	if(ret.wordStr != "" && !reg.test(str.charAt(str.length - 1)) ){
         	  	   console.log(JSON.stringify(ret));
 //      	       api.alert({ msg: ret.wordStr });
-        	       sendMessage("“"+ret.wordStr+"”");
-        	       
-        }
-        	
-       	
+        	       sendMessage("“"+ret.wordStr+"”");    	       
+        } 	
        }
-
-     
-
-
- 
-
     } else {
          // api.alert({ msg: err.msg });
-          
           //错误处理，返回我不知道你在说什么
           $(".wavecontainer").trigger("click");
           voiceFlag = 2;
@@ -326,6 +314,8 @@ function sendMsgToServer(msg) {
     //向服务端发送消息
     ws.send(msg);
 }
+
+
 apiready = function () {
 	var header = $api.byId('header');
     $api.fixIos7Bar(header);
@@ -338,7 +328,7 @@ apiready = function () {
 
 
 	g_uid = $api.getStorage('uid');
-	g_uid="robot";
+//	g_uid="robot";
 	
 	//创建一个连接，这里的参数是服务端的链接
 	ws = new WebSocket('ws://'+iotGetServerAddr()+':3009/');
@@ -351,7 +341,18 @@ apiready = function () {
     	};
     
     	sendMsgToServer(JSON.stringify(urlParam));
+    	
+    	var urlParam2 = {
+			msgType: "send",
+			to: g_to,
+    		userId: g_uid
+    	};
+    
+    	sendMsgToServer(JSON.stringify(urlParam2));
+    	
 	};
+	
+	
 
 	//收到消息时触发
 	ws.onmessage = function(e) {
@@ -375,6 +376,11 @@ apiready = function () {
 	//连接错误时触发
 	ws.onerror = function(e) {
 	}
+	
+	
+
+	
+
 
 
 

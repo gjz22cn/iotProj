@@ -2,7 +2,15 @@
 body{
 	background: rgba(0,0,0,0.9);
 }
+.stopBtn{
+	color: lightseagreen;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	line-height: 45px;
+	font-size: 16px;
 
+}
 
 .bottom{
 	/*border: 1px solid red;*/
@@ -74,8 +82,14 @@ body{
 	padding-bottom: 5px;
 	outline: none;
 	text-align: right;
+
+	
+	width: 100%;
+	box-sizing: border-box;
+	/*border:1px solid red;*/	
 	
 }
+
 
 #chatContainer .editmessageContainer{
 	height: 20px;
@@ -119,6 +133,8 @@ body{
 	padding-right: 100px;
 	padding-left: 10px;
 	margin-top: 10px;
+	
+	text-align: justify;
 }
 
 

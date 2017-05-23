@@ -22,7 +22,7 @@ function chatVoice(){
 		url: './html/chatSiri.html',
         opaque: true,
         vScrollBarEnabled: false,
-   		bounces:false,
+   		bounces:false
    		
    		
     });

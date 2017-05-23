@@ -139,6 +139,7 @@ function init() {
             var tpl = $api.byId('template').text;
             var tempFn = doT.template(tpl);
             content.innerHTML = tempFn(ret);
+      
         } else {
             api.toast({msg: err.msg})
         }
