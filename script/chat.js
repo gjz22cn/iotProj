@@ -53,7 +53,7 @@ function storageChatdata(dic){
 
 function emptyMessage(){
 	localStorage.removeItem("chatdata");
-	window.location.reload();
+	$("#chatContainer").empty();
 }
 
 
