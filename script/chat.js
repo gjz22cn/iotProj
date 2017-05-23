@@ -74,12 +74,12 @@ var chatdata = getChatdata();
 	
 	if(chatdata.data[i].type == "1"){
 		var dom = $(chatDom1);
-		dom.find(".message").text(chatdata.data[i].message);
+		dom.find(".message").html(chatdata.data[i].message);
 		$("#chatContainer").append(dom);
 	}
 	if(chatdata.data[i].type == "2"){
 		var dom = $(chatDom2);
-		dom.find(".message").text(chatdata.data[i].message);
+		dom.find(".message").html(chatdata.data[i].message);
 		$("#chatContainer").append(dom);
 	}
 }
@@ -174,12 +174,18 @@ apiready = function () {
 		
 		if(msg.msgType == "QAsession") {
 			//alert(JSON.stringify(msg));
+			var messageT = msg.msg.data.replace(/\n/g,"<br/>");
+			
 			var dic = {};
 			dic.type = "1";
-			dic.message = msg.msg.data;
+//			dic.message = msg.msg.data;
+			dic.message = messageT;
+			
 	    	storageChatdata(dic);
 			var dom = $(chatDom1);
-			dom.find(".message").text(dic.message);
+//			dom.find(".message").text(dic.message);
+			dom.find(".message").html(dic.message);
+			
 			$("#chatContainer").append(dom);
 			$(".messageInput").val("");
 			scrollToBottom("#chatContainer");

@@ -47,9 +47,7 @@ $(".wavecontainer").on("click", function() {
 	 voiceFlag = 1;
 	//震动
 
- 
-	 speechRecognizer.stopRecord();
-
+	speechRecognizer.stopRecord();
 	SW9.stop();
     speechRecognizer.stopRead();
    
@@ -186,7 +184,7 @@ function  sendMessage(message){
 
 function getMessage(message){
 
-    message = message.replace("\n","<br/>");
+    message = message.replace(/\n/g,"<br/>");
 
 
 	flag = 2;
@@ -248,7 +246,7 @@ function getVoice(){
 	speechRecognizer.record({
     vadbos: 3000,
     vadeos: 3000,
-    rate: 16000,
+    rate: 16000, 
     asrptt: 1,
    
 }, function(ret, err) {
