@@ -30,4 +30,10 @@
   <permission name="contact"/>  
   <access origin="*"/>  
   <feature name="FNScanner"/> 
+  <feature name="smsVerify">
+  <param name="android_app_key" value="1f30067eea31a"/>
+  <param name="android_app_secret" value="e01ad9c009e4b002dc036f3e5e06c3af"/>
+  <param name="ios_app_key" value="1f30067eea31a"/>
+  <param name="ios_app_secret" value="e01ad9c009e4b002dc036f3e5e06c3af"/>
+</feature>
 </widget>

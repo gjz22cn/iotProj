@@ -4,6 +4,31 @@ var prevPid = '', curPid = '';
 var frameArr = [];
 
 
+function mymoney(){
+    api.openWin({
+        name: 'chat',
+        url: './html/mymoney.html',
+        opaque: true,
+        vScrollBarEnabled: false,
+        bounces:false
+     
+    });
+}
+
+
+function makemoney(){
+    api.openWin({
+        name: 'chat',
+        url: './html/makemoney.html',
+        opaque: true,
+        vScrollBarEnabled: false,
+        bounces:false
+     
+    });
+}
+
+
+
 function chat(){
     api.openWin({
         name: 'chat',

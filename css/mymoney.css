@@ -1,0 +1,95 @@
+#balanceContainer{
+	background: dodgerblue;
+	position: relative;
+}
+
+
+#balanceContainer #balanceName{
+	/*border: 1px solid blue !important;*/
+	font-size: 16px;
+	color: white;
+	height: 50px;
+	line-height: 50px;
+	padding: 20px 0 0 10px;
+	
+}
+
+#balanceContainer #balance{
+	/*border: 1px solid orange !important;*/
+	color: white;
+	font-size: 50px;
+	height: 100px;
+	line-height: 100px;
+	padding: 0px 0 0 10px;
+}
+
+.monthMoney{
+	color: white;
+	color: yellow;
+	position: absolute;
+	left: 60%;
+	top: 35px;
+}
+.allMoney{
+	color: white;
+	color: yellow;
+	position: absolute;
+	left: 60%;
+	top: 80px;
+}
+
+
+
+.cell{
+	/*border: 1px solid red;*/
+	border-bottom: 1px solid gainsboro;
+	height: 60px;
+	position: relative;
+}
+.cellImg{
+	/*border: 1px solid red;*/
+	height: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: absolute;
+	top: 10px;
+}
+
+.cellName{
+	font-size: 20px;
+	line-height: 60px;
+	position: absolute;
+	left: 60px;
+}
+
+.rightBack{
+	position: absolute;
+	right: 10px;
+	height:20px;
+	top: 20px;
+}
+
+
+.infocontainer{	
+	/*border: 1px solid red;*/
+	text-align: center;
+	height: 30px;
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+
+.infocontainer .line{
+	display: inline-block;
+	vertical-align: top;
+	height:16px;
+	background: cornflowerblue;
+	width: 2px;
+	margin-top: 6px;
+}
+
+.infocontainer .express,.question{
+	color: darkslategray;
+	line-height: 30px;
+	
+}
