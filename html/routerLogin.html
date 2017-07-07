@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+    <title>api</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/modifyNick.css" />
+     <style>
+   
+         #loginTip{
+            text-align: center;
+            margin-top: 20px;
+         }
+         #loginTip a{
+         	line-height: 40px;
+            text-decoration: underline;
+            color: #bfbfbf;
+            font-size: 1em;
+            font-family: '微软雅黑';
+         }
+         .hidden{
+            display: none;
+         }
+         .input-wrap{
+         	padding: 20px 10px 0;
+         }
+         .code{
+         	width: 70%;
+         	display: inline-block!important;
+         	padding-right: 0px!important;
+         }
+         .send{
+         	width: 20%!important;
+         	background: dodgerblue!important;
+         	display: inline-block!important;
+         	position: absolute;
+         	right: 10px;
+         	top: 20px;
+         	font-size: 12px!important;
+         	height: 17px;
+         }
+         
+         .headerbg{
+         	background: url(../image/bg.png);
+         	height: 150px;
+         }
+         .headerimg{
+         	width: 70px;
+         	height: 70px;
+         	border: 2px solid white;
+         	border-radius: 35px;
+         	display: block;
+         	margin: 0 auto;
+         	
+         }
+         .headername{
+         	/*border: 1px solid red;*/
+         	text-align: center;
+         	color: gainsboro;
+         	font-size: 16px;
+         	margin-top: 10px;
+         }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header" style="background: dodgerblue;">
+            <a class="back-icon" tapmode="" onclick="api.closeWin()"></a>
+            <h1>登录</h1>
+        </div>
+        <div id="main">
+            <div class="input-wrap">
+                <input type="number" placeholder="手机号"  class="txt" id="phone" value="" />
+               
+            </div>
+            <div class="input-wrap">
+                <input type="number" placeholder="验证码"  class="txt code" id="code" value="" />
+                <a id="codebtn" class="btn send"  tapmode="active"  >发送验证码</a>
+                
+            </div>
+          
+            <a class="btn" id="loginBtn" style="margin-top:30px; background: dodgerblue;" tapmode="active" >登录</a>
+        </div>
+        
+        <div class="haslogin" style="display: none;">
+        		<div class="headerbg">
+        			<div style="height: 10px;"></div>
+        			<img class="headerimg" src="../image/head.jpg" />
+        			<div class="headername">139852455</div>
+        		</div>
+            <a class="btn" style="margin-top:30px; background: dodgerblue;" tapmode="active" onclick="logout()">退出登陆</a>
+        </div>
+        <!--跳过验证-->
+        <div id="mylogin" style="position: absolute;bottom: 0;width: 100%;height: 50px;box-sizing: border-box;">
+        	
+        </div>
+    </div>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/iot.js"></script> 
+<script type="text/javascript" src="../script/jquery-1.11.2.min.js" ></script>
+<script type="text/javascript" src="../script/phonelogin.js"></script>
+</body>
+
+
+</html>

@@ -51,7 +51,7 @@
 	/*border: 1px solid red;*/
 	position: absolute;
 	top: 0;
-	right: 100px;
+	right: 60px;
 	top: 5px;
 	left: 85px;
 	
@@ -83,7 +83,7 @@
 	font-size: 12px;
 	line-height: 50px;
 	position: absolute;
-	right: 55px;
+	right: 15px;
 	color: dodgerblue;
 	color: lightseagreen;
 }

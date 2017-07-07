@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="address=no" />
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+
+		<link rel="stylesheet" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/mymoney.css" />
+		<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../script/Vue.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="header" style="background-color: dodgerblue;border-bottom: 1px solid white;">
+				<a class="back-icon" tapmode="" onclick="api.closeWin()" ></a>
+				<h1>钱包</h1>
+			</div>
+
+			<div id="balanceContainer">
+				<div id="balanceName">账户余额(元)</div>
+				<div id="balance">100.00</div>
+				<div class="monthMoney">当月收入:100.00</div>
+				<div class="allMoney">总收入:200.00</div>
+			</div>
+
+
+
+			
+			<div class="cell">
+				<img src="../image/明细.png" class="cellImg" />
+				<span class="cellName">明细</span>
+				<img src="../image/arr-r.png" class="rightBack" />
+			</div>
+			
+			<div class="cell">
+				<img src="../image/提现.png" class="cellImg" />
+				<span class="cellName">提现</span>
+				<img src="../image/arr-r.png" class="rightBack" />
+			</div>
+
+
+		</div>
+	
+
+		<div class="infocontainer">
+			<span class="express">使用说明</span>
+			<div class="line"></div>
+			<span class="question">常见问题</span>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/iot.js"></script>
+	<script type="text/javascript" src="../script/chat.js"></script>
+
+</html>

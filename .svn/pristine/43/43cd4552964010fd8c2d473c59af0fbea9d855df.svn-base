@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="address=no" />
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+
+		<link rel="stylesheet" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/makemoney.css" />
+
+		<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../script/Vue.js"></script>
+	</head>
+
+	<body>
+		<div id="header" style="background-color: dodgerblue;border-bottom: 1px solid white;">
+			<a class="back-icon" tapmode="" onclick="api.closeWin()"></a>
+			<h1>设置</h1>
+		</div>
+		<div id="container">
+
+			<div class="settitle">设置</div>
+
+			<div class="switchContainer">
+				<span class="sharesure">是否共享</span>
+				<div class="mui-switch  mui-switch-blue " id="mySwitch">
+					<div class="mui-switch-handle"></div>
+				</div>
+			</div>
+
+			<div class="shareContainer">
+				<div class="shareName">预留带宽</div>
+				<!--<input type="number" id="uprange" />-->
+				<span class="Mbps">0.25Mbps</span>
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined sure">确定</button>
+				<!--<span class="sure">修改</span>-->
+				<div class="mui-input-row mui-input-range rangContainer">
+					<input type="range" min="0" max="4" value="0" class="rangInput">
+				</div>
+			</div>
+
+			<div class="infotitle settitle">说明</div>
+
+			<div class="infocontainer">
+				<span>我们会根据您设备转发的流量进行计费，每转发1m流量就会获得0.001元。</span>
+			</div>
+
+		</div>
+
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/iot.js"></script>
+	<script type="text/javascript" src="../script/chat.js"></script>
+	<script type="text/javascript" src="../script/mui.min.js"></script>
+
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+
+		document.getElementById("mySwitch").addEventListener("toggle", function(event) {
+
+			if(event.detail.isActive) {
+				alert("你启动了开关");
+			} else {
+				alert("你关闭了开关");
+			}
+		});
+
+apiready = function(){
+	
+
+		var smsVerify = api.require('smsVerify');
+		smsVerify.register(function(ret, err) {
+			if(ret.status) {
+				//api.alert({msg: '注册成功'});
+			} else {
+				api.alert({
+					msg: err.code + ' 注册失败'
+				});
+			}
+		});
+		
+		
+}//apiready
+
+	</script>
+
+</html>

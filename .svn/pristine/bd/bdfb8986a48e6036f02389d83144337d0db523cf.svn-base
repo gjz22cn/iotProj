@@ -1,0 +1,123 @@
+	var smsVerify = null;
+	// 注册，初始化
+	function register(){
+		smsVerify.register(function(ret, err){
+			if(ret.status){
+				api.alert({msg: '注册成功'});
+				console.log('注册成功');
+			}else{
+				api.alert({msg: err.code+' 注册失败'});
+			}
+		});
+	}
+	
+	// 发短信验证码
+	function sms(){
+		var phone = document.getElementById("phone").value;
+		smsVerify.sms({
+			phone:phone,
+		},function(ret, err){
+			if(ret.status){
+				// 新增的安卓智能验证功能
+				if( ret.smart == true ){	// 安卓版特有功能 智能验证成功
+					api.alert({msg: '智能验证成功，开发者可以为用户直接跳转到手机号验证成功之后的操作'});
+				}else{
+					api.alert({msg: '短信发送成功'});
+				}
+			}else{
+				api.alert({msg: err.code+' 短信发送失败'});
+			}
+		});
+	}
+	
+	// 发语音验证码
+	function voice(){
+		var phone = document.getElementById("phone").value;
+		smsVerify.voice({
+			phone:phone,
+		},function(ret, err){
+			if(ret.status){
+				api.alert({msg: '语音发送成功'});
+			}else{
+				api.alert({msg: err.code+' 语音发送失败'});
+			}
+		});
+	}
+	
+	// 校验验证码
+	function verify(){
+		var phone = document.getElementById("phone").value;
+		var code = document.getElementById("code").value;
+		smsVerify.verify({
+			phone:phone,
+			code:code,
+		},function(ret, err){
+			if(ret.status){
+				api.alert({msg: '验证成功'});
+			}else{
+				api.alert({msg: err.code+' 验证失败'});
+			}
+		});
+	}
+
+
+
+
+
+
+function delWord(el) {
+    var input = $api.prev(el, '.txt');
+    input.value = '';
+}
+
+function login() {
+    api.openWin({
+        name: 'userRegister',
+        url: 'userRegister.html',
+        opaque: true,
+        vScrollBarEnabled: false
+    });
+}
+
+function ensure() {
+    api.showProgress({
+        title: '正在登录...',
+        modal: false
+    });
+    var name = $api.byId('username').value;
+    var pwd = $api.byId('password').value;
+
+    var loginUlr = '/user/login';
+    var bodyParam = {
+        username: name,
+        password: pwd
+    }
+    /*ajaxRequest(loginUlr, 'post', JSON.stringify(bodyParam), function (ret, err) {*/
+    iotServerRequest(loginUlr, 'post', JSON.stringify(bodyParam), function (ret, err) {
+        if (ret) {
+        	if(ret.ret==0) {
+        		$api.setStorage('uid', ret.userId);
+            	//$api.setStorage('token', ret.id);
+            	setTimeout(function () {
+                	api.closeWin();
+            	}, 100);
+            } else {
+            	api.alert({
+            		msg: ret.errStr
+            	});
+            }
+        } else {
+            api.alert({
+                msg: err.msg
+            });
+        }
+        api.hideProgress();
+    })
+}
+
+apiready = function () {
+    var header = $api.byId('header');
+    $api.fixIos7Bar(header);
+	smsVerify = api.require('smsVerify');
+     register();
+};

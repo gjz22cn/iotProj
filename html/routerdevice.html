@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="address=no" />
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+
+		<link rel="stylesheet" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/mymoney.css" />
+
+	</head>
+	<style>
+		.bindbtn {
+			border: 1px solid dodgerblue;
+			border-radius: 5px;
+			width: 80%;
+			margin: 0 auto;
+			display: block;
+			padding: 5px 5px;
+			text-align: center;
+			color: white;
+			background-color: dodgerblue;
+			margin-top: 10px;
+		}
+	</style>
+
+	<body>
+		<div id="container">
+			<div id="header" style="background-color: dodgerblue;border-bottom: 1px solid white;">
+				<a class="back-icon" tapmode="" onclick="api.closeWin()"></a>
+				<h1>我的路由器</h1>
+			</div>
+			
+			<div style="height: 30px;background:gainsboro;color: gray;line-height: 30px;padding-left: 10px;">路由器列表</div>
+
+			<!--<div id="balanceContainer">
+				<div id="balanceName">账户余额(元)</div>
+				<div id="balance">100.00</div>
+				<div class="monthMoney">当月收入:100.00</div>
+				<div class="allMoney">总收入:200.00</div>
+			</div>-->
+			<div class="cell" v-for="dic in values" v-bind:deviceId="dic.deviceId">
+				<img src="../image/luyouqi.png" class="cellImg" />
+				<span class="cellName">{{dic.manufacture}}</span>
+				<img src="../image/arr-r.png" class="rightBack" />
+			</div>
+
+			<!--<div class="cell">
+				<img src="../image/luyouqi.png" class="cellImg" />
+				<span class="cellName">路由器2</span>
+				<img src="../image/arr-r.png" class="rightBack" />
+			</div>-->
+
+			<div class="bindbtncontainer">
+				<span class="bindbtn">扫描二维码绑定路由器</span>
+			</div>
+			<div style="height: 30px;"></div>
+
+		</div>
+
+		<!--<div class="infocontainer">
+			<span class="express">使用说明</span>
+			<div class="line"></div>
+			<span class="question">常见问题</span>
+		</div>-->
+
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script src='../script/swipe.js'></script>
+	<script type="text/javascript" src="../script/doT.min.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<!--<script type="text/javascript" src="../script/main.js"></script>-->
+	<script type="text/javascript" src="../script/iot.js"></script>
+	<script type="text/javascript" src="../script/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../script/Vue.js"></script>
+
+	<script>
+		var app;
+
+		function bindrequest() {
+			var uid = $api.getStorage("uid");
+			var urlParam = {
+				msgType: "dev_bind",
+				userId: uid,
+				//  			manufacture: content.manufacture,
+				//  			serialNumber: content.serialNumber,
+				//  			key: content.Key		
+			};
+			iotServerRequest("/app", 'POST', JSON.stringify(urlParam), function(ret, err) {
+				if(ret) {
+					alert(JSON.stringify(ret));
+				} else {
+					api.alert({
+						msg: err.msg
+					});
+				}
+			});
+		} //bindrequest
+		function deviceBind() {
+			var FNScanner = api.require('FNScanner');
+			FNScanner.openScanner({
+				autorotation: true
+			}, function(ret, err) {
+				if(ret) {
+
+					if(ret.eventType == "success") {
+						var urlParam;
+						try {
+							var str = ret.content;
+							var str2 = JSON.parse(str);
+							var uid = $api.getStorage("uid");
+							//						alert(str2.manufacture);
+							//						alert(str2.manufactureSN);
+							urlParam = {
+								msgType: "dev_bind",
+								userId: uid,
+								manufacture: str2.manufacture,
+								manufactureSN: str2.manufactureSN
+							};
+
+						} catch(e) {
+							alert("二维码错误");
+							return;
+						}
+
+						iotServerRequest("/app", 'POST', JSON.stringify(urlParam), function(ret, err) {
+							if(ret) {
+								if(ret.ret == 1) alert("该设备已经绑定");
+								if(ret.ret == 0) {
+									alert("绑定成功");
+									showDevices();
+								}
+								
+
+							} else {
+								api.alert({
+									msg: err.msg
+								});
+							}
+						});
+					} //ifsuccess
+
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		} //deviceBind
+//设置按钮
+		function setbtn() {
+			$(".cell").unbind("click");
+			$(".bindbtn").unbind("click");
+			$(".cell").on("click", function() {
+				var deviceId = $(this).attr("deviceId");
+			    $api.setStorage("deviceId",deviceId);
+				api.openWin({
+					name: 'chat',
+					url: 'makemoney.html',
+					opaque: true,
+					vScrollBarEnabled: false,
+					bounces: false
+				});
+			});
+
+			$(".bindbtn").on("click", function() {
+				deviceBind();
+			});
+
+		} //setbtn
+
+		function showDevices() {
+			var uid = $api.getStorage('uid');
+
+			if(typeof(uid) == "undefined") {
+				var content = $api.byId('content');
+				content.innerHTML = "<p align='center'>请登录后,查看我的设备！</p>";
+				return;
+			}
+
+			var urlParam = {
+				msgType: "get_dev",
+				userId: uid,
+				devType: "all",
+			};
+
+			iotServerRequest("/app", 'POST', JSON.stringify(urlParam), function(ret, err) {
+				if(ret) {
+//					alert(JSON.stringify(ret));
+					//给vue设置数据 
+					app.values = ret.values;
+					app.$nextTick(function(){
+						setbtn();
+					});
+				} else {
+					api.alert({
+						msg: err.msg
+					});
+				}
+			});
+
+		}
+		apiready = function() {
+
+			showDevices();
+		
+
+			app = new Vue({
+				el: '#container',
+				data: {
+					values: []
+				}
+			}); //app
+			
+				setbtn();
+
+		}
+	</script>
+
+</html>

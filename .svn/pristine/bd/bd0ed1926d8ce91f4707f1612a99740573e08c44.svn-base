@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6973666436346" version="0.0.1"> 
+  <name>Hello APP</name>  
+  <description>Example For APICloud.</description>  
+  <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>  
+  <content src="index.html"/>  
+  <preference name="pageBounce" value="true"/>  
+  <preference name="appBackground" value="rgba(0,0,0,0.0)"/>  
+  <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>  
+  <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>  
+  <preference name="hScrollBarEnabled" value="true"/>  
+  <preference name="vScrollBarEnabled" value="true"/>  
+  <preference name="autoLaunch" value="true"/>  
+  <preference name="fullScreen" value="false"/>  
+  <preference name="autoUpdate" value="true"/>  
+  <preference name="smartUpdate" value="false"/>  
+  <preference name="debug" value="false"/>  
+  <preference name="iOS7StatusBarAppearance" value="true"/>  
+  <permission name="readPhoneState"/>  
+  <permission name="call"/>  
+  <permission name="sms"/>  
+  <permission name="camera"/>  
+  <permission name="record"/>  
+  <permission name="location"/>  
+  <permission name="fileSystem"/>  
+  <permission name="internet"/>  
+  <permission name="bootCompleted"/>  
+  <permission name="hardware"/>  
+  <permission name="contact"/>  
+  <access origin="*"/>  
+  <feature name="FNScanner"/> 
+  <feature name="smsVerify">
+  <param name="android_app_key" value="1f30067eea31a"/>
+  <param name="android_app_secret" value="e01ad9c009e4b002dc036f3e5e06c3af"/>
+  <param name="ios_app_key" value="1f30067eea31a"/>
+  <param name="ios_app_secret" value="e01ad9c009e4b002dc036f3e5e06c3af"/>
+</feature>
+</widget>

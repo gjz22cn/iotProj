@@ -1,0 +1,111 @@
+.settitle{
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	color: gray;
+}
+
+.switchContainer{
+	/*border: 1px solid red;*/
+	position: relative;
+	height: 50px;
+	border-bottom: 1px solid gainsboro;
+	border-top: 1px solid gainsboro;
+	background: white;
+}
+.sharesure
+{
+	line-height:50px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+
+#mySwitch{
+	position: absolute;
+	right: 10px;
+	top: 9px;
+	
+}
+
+
+.shareContainer{
+	/*border: 1px solid red;*/
+	position: relative;
+	height: 50px;
+	border-bottom: 1px solid gainsboro;
+	background: white;
+	
+}
+
+
+.shareName{
+	display: inline;
+	line-height:50px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+
+/*滑块*/
+.rangContainer{
+	/*border: 1px solid red;*/
+	position: absolute;
+	top: 0;
+	right: 100px;
+	top: 5px;
+	left: 85px;
+	
+}
+/*影藏slide的显示框框*/
+.rangContainer span{
+	display: none;
+}
+.rangInput{
+	background: deepskyblue!important;
+}
+
+.sure{
+	border: 1px solid gainsboro;
+	border-radius: 3px;
+	padding: 0px 5px;
+	color: dodgerblue;
+	position: absolute;
+	top: 11px;
+	right: 10px;
+	display: block;
+	height: 27px;
+	line-height: 27px;
+	font-size: 12px;
+	
+}
+
+.Mbps{
+	font-size: 12px;
+	line-height: 50px;
+	position: absolute;
+	right: 55px;
+	color: dodgerblue;
+	color: lightseagreen;
+}
+
+#uprange{
+	width: 30px;
+	padding: 0;
+	position: absolute;
+	right: 54px;
+	padding: 2px;
+	height: 30px;
+	top: 10px;
+}
+
+
+.infotitle{
+
+}
+
+.infocontainer{
+	border-bottom: 1px solid gainsboro;
+	border-top: 1px solid gainsboro;
+	background: white;
+	padding: 10px 10px;
+}

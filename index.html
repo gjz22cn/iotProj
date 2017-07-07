@@ -8,14 +8,20 @@
     <link rel="stylesheet" type="text/css" href="./css/common.css" />
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
 </head>
+<style>
+
+</style>
 <body>
     <div id="wrap">
         <div id="header">
-            <div class="main header active">
-                <h1></h1>
+            <div class="">
+                <div id="header" style="background-color: dodgerblue;border-bottom: 1px solid white;">
+				<!--<a class="back-icon" tapmode="" onclick="api.closeWin()"></a>-->
+				<h1>我的路由器</h1>
+			</div>
             </div>
             <div class="news header">
-                <h1>IoT</h1>
+                <!--<h1>IoT</h1>-->
                 <ul class="submenu" id="headid">
                     <li><a tapmode="active" onclick="filterNews('hot');" class="hot light"><i></i>热点</a></li>
                     <li><a tapmode="active" onclick="filterNews('local');" class="local"><i></i>本地</a></li>
@@ -23,13 +29,13 @@
                 </ul>
             </div>
             <div class="life header">
-                <h1>IoT</h1>
+                <!--<h1>IoT</h1>-->
             </div>
             <div class="chat header">
-                <h1>客服</h1>
+                <!--<h1>客服</h1>-->
             </div>
             <div class="activity header">
-                <h1>IoT</h1>
+                <!--<h1>IoT</h1>-->
                 <ul class="submenu">
                     <li><a tapmode="" onclick="searchAct(this,'city')" class="city"><i></i><span>全城</span></a></li>
                     <li><a tapmode="" onclick="searchAct(this,'type')" class="hot"><i></i><span>全部类型</span></a></li>
@@ -51,9 +57,11 @@
                 <!--<li><a class="activity" tapmode="active" onclick="openTab('activity','548ec21308d4718e7d771bbf')">活动</a></li>-->
                 <!--<li><a class="life" tapmode="active" onclick="chat();">客服</a></li>-->
                 <!--<li><a class="activity" tapmode="active" onclick="chatVoice();">语音客服</a></li>-->
+                <!--<li><a class="user" tapmode="active" onclick="routerdevice();">路由器</a></li>-->
                 <li><a class="life" tapmode="active" onclick="mymoney();">钱包</a></li>
-                <li><a class="news" tapmode="active" onclick="makemoney();">设置</a></li>
-                <li><a class="user" tapmode="active" onclick="openTab('user','548ec21a72c60e937d21c8d1')">我</a></li>
+                <!--<li><a class="news" tapmode="active" onclick="makemoney();">设置</a></li>-->
+                <li><a class="user" tapmode="active" onclick="loginwithphone()">我</a></li>
+                <!--<li><a class="user" tapmode="active" onclick="openTab('user','548ec21a72c60e937d21c8d1')">我</a></li>-->
             </ul>
         </div>
     </div>
