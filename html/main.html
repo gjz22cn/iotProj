@@ -68,7 +68,7 @@
 			<div class="line"></div>
 			<span class="question">常见问题</span>
 		</div>-->
-
+		<div style="height: 20px; line-height20px;background: gainsboro;padding-left: 10px;position: absolute;bottom: 0;left: 0;width: 100%;color: gray;">提示:点击可以进行设置，长按删除。</div>
 	</body>
 	<script type="text/javascript" src="../script/api.js"></script>
 	<script src='../script/swipe.js'></script>
@@ -176,8 +176,69 @@
 			$(".bindbtn").on("click", function() {
 				deviceBind();
 			});
+			
+			
+		//长按删除
+		var touchI = 0;
+		$(".cell").on("touchstart",function(){
+			var deviceid = $(this).attr("deviceId");
+			var uid = $api.getStorage('uid');
+			var thistimea = setInterval(function(){
+				touchI++;
+				if(touchI >= 2){
+					touchI = 0;
+					clearInterval(thistimea);
+					
+					var sure = confirm("确定删除?");
+					if(sure == true){
+						deleteCell(deviceid,uid);
+					}//sure
+					
+					
+	
+				}
+			},1000);
+			
+			
+		});
+		$(".cell").on("touchend",function(){
+			touchI = 0;
+		});
+		//长按删除结束			
 
 		} //setbtn
+//删除
+function deleteCell(devid,uid){
+	
+	var urlParam = {
+				msgType: "delete_dev",
+				userId: uid,
+				deviceId: devid,
+			};
+
+			iotServerRequest("/app", 'POST', JSON.stringify(urlParam), function(ret, err) {
+				if(ret) {
+//					alert(JSON.stringify(ret));
+					//给vue设置数据 
+					if(ret.ret == 0){
+						alert("删除成功");
+						showDevices();
+					}
+					if(ret.ret == 1){
+						alert("删除失败");
+					}
+					
+			
+			
+				} else {
+					api.alert({
+						msg: err.msg
+					});
+				}
+			});
+			
+			
+}//删除
 
 		function showDevices() {
 			var uid = $api.getStorage('uid');
